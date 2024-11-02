@@ -5,12 +5,15 @@ import CodeExecuter as CE
 import ReadFile as CR
 from tkinter import messagebox
 import openai
+import chatGPT_API as MG
 
 class App:
     def __init__(self):
         self.window = tk.Tk()
         self.window.title("Testing Tool")
         self.window.geometry("1000x1000")
+
+        self.model = MG.Phi3_5Model()
 
         # Create Tabs
         self.tab_control = ttk.Notebook(self.window)
@@ -271,14 +274,10 @@ class App:
 
     def generate_with_ai(self, prompt):
         try:
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "user", "content": prompt}
-                ]
-            )
-            self.ai_gen_code_string = response.choices[0].message['content']
-            self.show_ai_generator()
+            self.ai_gen_code_string =  self.model.send_prompt(prompt)
+            self.gen_code_string = self.ai_gen_code_string
+            self.generator_box.delete(1.0, tk.END)
+            self.generator_box.insert(tk.END, self.gen_code_string)
         except Exception as e:
             messagebox.showerror("Error", f"Failed to generate code: {str(e)}")
 
