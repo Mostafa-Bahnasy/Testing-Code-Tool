@@ -4,11 +4,11 @@ from tkinter import ttk
 import CodeExecuter as CE
 import ReadFile as CR
 from tkinter import messagebox
-import openai
-import chatGPT_API as MG
+import AiBot as MG
 
 class App:
     def __init__(self):
+        self.compare_frame = None
         self.window = tk.Tk()
         self.window.title("Testing Tool")
         self.window.geometry("1000x1000")
@@ -39,6 +39,7 @@ class App:
         # Layout for the "Compare" tab
         self.create_compare_tab()
         self.create_about_tab()  # Add About tab
+        self.change_theme_mode('#FFFAFA','#D3D3D3','#000000')
 
         self.code_execute = CE.CodeExecutor()
         self.code_reader = CR.CodeFileReader()
@@ -49,13 +50,6 @@ class App:
         self.ai_gen_code_string = ""
         self.compare_code_string = ""
         self.test_loop = 0
-        # Style configuration for the Notebook tabs
-        style = ttk.Style()
-        style.configure("TabFrame.TFrame", background="#4A4A4A")  # Frame color for tabs
-        style.configure("TLabel", background="#2E2E2E", foreground="white")  # Label color
-        style.configure("TButton", background="#5A5A5A", foreground="white")  # Button color
-        style.configure("TText", background="#3E3E3E", foreground="white")  # Text widget color
-        style.configure("TScrollbar", background="#5A5A5A", troughcolor="#2E2E2E")  # Scrollbar color
 
     def init_test_stress(self):
         self.test_loop = int(self.stress_test_num_entry.get())
@@ -224,7 +218,7 @@ class App:
         scrollbar = tk.Scrollbar(frame, command=text_widget.yview)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         text_widget.config(yscrollcommand=scrollbar.set)
-
+        text_widget.config(bg="#E6E6F0",fg="#000080")
     def create_stress_tab(self):
         self.left_frame = tk.Frame(self.stress_tab)
         self.left_frame.grid(row=0, column=0, sticky="n")
@@ -294,7 +288,6 @@ class App:
         self.show_wrong_butt.pack(anchor="w")
         self.next_test_but = tk.Button(self.right_frame, text="Next Test", command=self.stress_test_method)
         self.next_test_but.grid(row=9, column=0, padx=5)
-
     def create_compare_tab(self):
         self.compare_frame = tk.Frame(self.compare_tab)
         self.compare_frame.pack(padx=10, pady=10)
@@ -330,6 +323,50 @@ class App:
         self.output_box = tk.Text(self.right_compare_frame, width=40, height=10)
         self.output_box.grid(row=5, column=0, padx=5, pady=5, sticky="w")
         self.output_box.config(state=tk.DISABLED)
+
+    def change_theme_mode(self, back: str,back2:str, txt: str):
+
+        self.input_code_1.config(bg=back, fg=txt)
+        self.upload_code_1_butt.config(bg=back2, fg=txt)
+        self.input_code_2.config(bg=back, fg=txt)
+        self.upload_code_2_butt.config(bg=back2, fg=txt)
+        self.generator_box.config(bg=back, fg=txt)
+        self.upload_gen_butt.config(bg=back2, fg=txt)
+        self.stress_test_num_entry.config(bg=back, fg=txt)
+        self.test_stress_butt.config(bg=back2, fg=txt)
+        self.test_case_input_box.config(bg=back, fg=txt)
+        self.output_code_1.config(bg=back, fg=txt)
+        self.output_code_2.config(bg=back, fg=txt)
+        self.next_test_but.config(bg=back2, fg=txt)
+        # Change color for widgets in create_compare_tab
+        self.compare_code_box.config(bg=back, fg=txt)
+        self.load_code_button.config(bg=back2, fg=txt)
+        self.run_code_button.config(bg=back2, fg=txt)
+        self.test_case_box.config(bg=back, fg=txt)
+        self.correct_output_box.config(bg=back, fg=txt)
+        self.output_box.config(bg=back, fg=txt)
+        # Set colors for text widgets
+        self.input_code_1.config(bg=back, fg=txt)
+        self.input_code_2.config(bg=back, fg=txt)
+        self.generator_box.config(bg=back, fg=txt)
+        self.test_case_input_box.config(bg=back, fg=txt, state="normal")
+        self.output_code_1.config(bg=back, fg=txt, state="normal")
+        self.output_code_2.config(bg=back, fg=txt, state="normal")
+
+        # Set colors for buttons
+        for button in [self.upload_code_1_butt, self.upload_code_2_butt, self.upload_gen_butt, self.test_stress_butt, self.next_test_but]:
+            button.config(bg=back2, fg=txt)
+
+        # Set colors for entries
+        self.stress_test_num_entry.config(bg=back, fg=txt)
+
+
+        # Re-disable text widgets if needed
+        self.test_case_input_box.config(state=tk.DISABLED)
+        self.output_code_1.config(state=tk.DISABLED)
+        self.output_code_2.config(state=tk.DISABLED)
+
+
 
     def run_code(self):
         self.compare_code_string = self.compare_code_box.get("1.0", "end-1c")
