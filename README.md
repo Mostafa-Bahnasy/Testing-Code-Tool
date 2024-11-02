@@ -16,13 +16,13 @@ The **Code Comparison and Test Generation Tool** is an innovative application de
 Explore the functionality of the application through the following demonstration videos:
 
 - **Part 1: Code Input and Comparison**  
-  [Watch Video 1](Project%20Files/code%20compare%20tests.mp4)
+  [![Part 1](Project%20Files/AI%20generator%20image.png)](Project%20Files/code%20compare%20tests.mp4)
 
 - **Part 2: Test Generation Process**  
-  [Watch Video 2](Project%20Files/manual%20stress%20test.mp4)
+  [![Part 2](Project%20Files/code%20compare%20tests.png)](Project%20Files/manual%20stress%20test.mp4)
 
 - **Part 3: AI-Assisted Test Generation**  
-  [Watch Video 3](Project%20Files/AI%20generator%20video.mp4)
+  [![Part 3](Project%20Files/manual%20stress%20test.png)](Project%20Files/AI%20generator%20video.mp4)
 
 
 ## Installation Instructions
