@@ -4,5 +4,5 @@ setup(
     name="MyApp",
     version="0.1",
     description="My Application",
-    executables=[Executable("E:\Testing app\Testing-Tool\Project Scripts\Main.py")]
+    executables=[Executable("./Main.py")]
 )
