@@ -41,8 +41,23 @@ To set up the application on your local machine, follow these steps:
 pip install -r requirements.txt
 ```
 
-2. **Run the Application:**: 
+3. **Run the Application:**: 
 - You can launch the application directly using the provided .exe file.
+
+
+## AI Requirements
+
+To use the AI model in this project, you need to download the Ollama CLI. Follow these steps:
+
+1. Download the Ollama CLI from the following link: [Ollama Download](https://ollama.com/download).
+
+2. Once you have installed the CLI, run the following bash script to start the AI model:
+```bash
+ollama run phi3.5
+```
+
+Make sure you have the necessary permissions to execute the script and that the Ollama CLI is correctly installed on your system.
+
 
 ## Technologies Used
 - Python
